@@ -4,6 +4,7 @@
     "version": "0.1.0",
     "name": "Docker build task",
     "publisher": "lambda3",
+    "description": "Adds a build task that enables Docker actions.",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
@@ -23,6 +24,14 @@
         "container services",
         "build"
     ],
+    "screenshots": [
+        {
+            "path": "screenshots/build.png"
+        },
+        {
+            "path": "screenshots/release.png"
+        }
+    ],
     "content": {
         "details": {
             "path": "overview.md"
@@ -41,5 +50,27 @@
         "issues": {
             "uri": "https://github.com/Lambda3/vsts-build-task-docker/issues"
         }
-    }
+    },
+    "branding": {
+        "color": "rgb(13, 92, 155)",
+        "theme": "dark"
+    },
+    "contributions": [
+        {
+            "id": "showCommits",
+            "type": "ms.vss-distributed-task.task",
+            "description": "Adds a build task that enables Docker actions.",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "lambda3docker"
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "lambda3docker"
+        }
+    ]
 }
