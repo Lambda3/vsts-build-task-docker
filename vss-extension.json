@@ -1,0 +1,45 @@
+{
+    "manifestVersion": 1,
+    "id": "lambda3docker",
+    "version": "0.1.0",
+    "name": "Docker build task",
+    "publisher": "lambda3",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "icons": {
+        "default": "lambda3docker/icon.svg"
+    },
+    "categories": [
+        "Build and release"
+    ],
+    "tags": [
+        "docker",
+        "container",
+        "release",
+        "docker-compose",
+        "container services",
+        "build"
+    ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        },
+        "license": {
+            "path": "LICENSE.txt"
+        }
+    },
+    "links": {
+        "home": {
+            "uri": "https://www.lambda3.com.br"
+        },
+        "repository": {
+            "uri": "https://github.com/Lambda3/vsts-build-task-docker"
+        },
+        "issues": {
+            "uri": "https://github.com/Lambda3/vsts-build-task-docker/issues"
+        }
+    }
+}
