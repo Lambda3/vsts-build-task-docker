@@ -1,0 +1,25 @@
+{
+  "name": "vsts-build-task-docker",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Microsoft/vsts-tasks.git"
+  },
+  "keywords": [
+    "docker",
+    "vsts",
+    "build"
+  ],
+  "author": "Giovanni Bassi <giggio@giggio.net>",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/Microsoft/vsts-tasks#readme",
+  "dependencies": {
+    "vso-task-lib": "^0.5.5"
+  }
+}
