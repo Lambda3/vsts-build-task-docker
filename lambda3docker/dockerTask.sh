@@ -72,10 +72,9 @@ exportEnvs () {
 }
 
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 version=$(date +%Y-%m-%d_%H-%M-%S)
 versionFileName=imageVersion.txt
-versionFile=$DIR/$versionFileName
+versionFile=$(pwd)/$versionFileName
 
 args=("$@")
 
