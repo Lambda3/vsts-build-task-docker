@@ -5,6 +5,7 @@
     "name": "Docker build task",
     "publisher": "lambda3",
     "description": "Adds a build task that enables Docker actions.",
+    "public": true,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
