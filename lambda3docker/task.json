@@ -15,7 +15,7 @@
   ],
   "version": {
     "Major": "0",
-    "Minor": "4",
+    "Minor": "6",
     "Patch": "0"
   },
   "minimumAgentVersion": "1.95.0",
@@ -77,6 +77,15 @@
       "required": false,
       "helpMarkDown": "Current working directory when Docker is run. Empty is the root of the repo (build) or artifacts (release), which is $(System.DefaultWorkingDirectory).",
       "groupName": "advanced"
+    },
+    {
+      "name": "composeDir",
+      "type": "filePath",
+      "label": "Compose Directory",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Directory where the compose files are.",
+      "visibleRule": "command = compose"
     },
     {
       "name": "sshServer",
@@ -143,8 +152,8 @@
         "EditableOptions": "True"
       },
       "options": {
-        "debug": "Debug",
-        "release": "Release"
+        "Debug": "Debug",
+        "Release": "Release"
       },
       "groupName": "advanced"
     }
