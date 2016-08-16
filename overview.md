@@ -1,6 +1,6 @@
 # Docker build Tasks
 
-A VSTS build task that helps you build and release Docker containers.
+A VSTS build task that helps you build and release Docker containers. It is [free and open source](https://github.com/Lambda3/vsts-build-task-docker).
 
 This build task offers special treatment to SSH connected services, such as the Azure Container Services.
 
@@ -64,6 +64,10 @@ The SSH key should be a private key, joined in one line, and, where the line bre
 ## Debugging errors
 
 If you set the variable `system.debug` to `true` you will get a lot of additional debug info.
+
+## Reporting issues
+
+Check out the [Github issues](https://github.com/Lambda3/vsts-build-task-docker/issues) directly.
 
 ## Build agent
 
