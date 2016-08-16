@@ -73,5 +73,9 @@
         {
             "path": "lambda3docker"
         }
+    ],
+    "galleryFlags": [
+      "Public",
+      "Preview"
     ]
 }
