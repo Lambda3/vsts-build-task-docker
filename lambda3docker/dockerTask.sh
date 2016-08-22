@@ -220,38 +220,35 @@ if [ $composeIndex -gt -1 ]; then
         fi
       done
     fi
-    echo "Running compose file $composeFileName ($env)."
-    if [ $env == "Debug" ]; then
-      echo "Removing previous environment..."
-      docker-compose -f $composeFileName down
-      check $?
-      echo "Creating new environment..."
-      docker-compose -f $composeFileName up
-      check $?
-    else
-      if [ ! -f $versionFile ]; then
-        versionFile=$(find . -name $versionFileName)
-      fi
-      if [ ! -z "$versionFile" ] &&  [ -f $versionFile ]; then
-        export IMAGE_VERSION=$(cat $versionFile)
-      else
-        export IMAGE_VERSION="latest"
-      fi
-      echo "Removing previous environment..."
-      if [[ $projectName == "" ]]; then
-        projectName=$(echo ${PWD##*/} | tr '[:upper:]' '[:lower:]')
-      fi
-      docker-compose -f $composeFileName -p $projectName down
-      check $?
-      echo "Version to run is $IMAGE_VERSION. Creating new environment..."
-      docker-compose -f $composeFileName -p $projectName up -d
-      exitCode=$?
-      if [[ $sshServer != "" ]]; then
-        kill -9 $sshPid
-        rm $keyFile
-      fi
-      check $exitCode
+    echo "Searching for image version file $versionFile..."
+    if [ ! -f $versionFile ]; then
+      echo "Could not find $versionFile, searching for $versionFileName..."
+      versionFile=$(find . -name $versionFileName)
     fi
+    if [ ! -z "$versionFile" ] &&  [ -f $versionFile ]; then
+      echo "Found $versionFile."
+      export IMAGE_VERSION=$(cat $versionFile)
+    else
+      echo "Found $versionFile, using default value 'lastest'."
+      export IMAGE_VERSION="latest"
+    fi
+    echo "Version is '$IMAGE_VERSION'."
+    echo "Running compose file $composeFileName ($env)."
+    echo "Removing previous environment..."
+    if [[ $projectName == "" ]]; then
+      projectName=$(echo ${PWD##*/} | tr '[:upper:]' '[:lower:]')
+    fi
+    docker-compose -f $composeFileName -p $projectName down
+    check $?
+    echo "Creating new environment..."
+    docker-compose -f $composeFileName -p $projectName up -d
+    exitCode=$?
+    if [[ $sshServer != "" ]]; then
+      echo "Killing SSH connection..."
+      kill -9 $sshPid
+      rm $keyFile
+    fi
+    check $exitCode
     exit 0
   else
     >&2 echo "$env may not be a valid parameter. File '$composeFileName' does not exist."
