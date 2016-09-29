@@ -157,6 +157,23 @@
       },
       "groupName": "advanced"
     }
+    ,
+    {
+      "name": "defaultenv",
+      "type": "pickList",
+      "label": "Default Environment",
+      "defaultValue": "Debug",
+      "required": false,
+      "helpMarkDown": "Default environment: Debug, Release, or type another. When the Environment property matches Default environment the taskk will use `Dockerfile`, otherwise it will use `Dockerfile.&lt;environment&gt;`",
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "options": {
+        "Debug": "Debug",
+        "Release": "Release"
+      },
+      "groupName": "advanced"
+    }
   ],
   "execution": {
     "Node": {

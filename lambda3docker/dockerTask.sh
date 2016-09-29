@@ -95,6 +95,17 @@ else
   env='Debug'
 fi
 
+defaultenvIndex=$(arrayContains args "--defaultenv")
+if [ $defaultenvIndex -gt -1 ]; then
+  defaultenv=${args[$(($defaultenvIndex + 1))]}
+  if [[ $defaultenv == --* ]]; then
+    >&2 echo "You must supply a valid value to --defaultenv."
+    exit 5
+  fi
+else
+  defaultenv='Debug'
+fi
+
 imageIndex=$(arrayContains args "--image")
 if [ $imageIndex -gt -1 ]; then
   imageName=${args[$(($imageIndex + 1))]}
@@ -163,7 +174,7 @@ if [ $buildIndex -gt -1 ]; then
     context='.'
   fi
   imageNameExists
-  if [ $env == "Debug" ]; then
+  if [ $env == $defaultenv ]; then
     dockerFileName="Dockerfile"
   else
     dockerFileName="Dockerfile.$env"
@@ -185,7 +196,7 @@ fi
 
 composeIndex=$(arrayContains args "--compose")
 if [ $composeIndex -gt -1 ]; then
-  if [ $env == "Debug" ]; then
+  if [ $env == $defaultenv ]; then
     composeFileName="docker-compose.yml"
   else
     composeFileName="docker-compose.$env.yml"
@@ -260,7 +271,7 @@ fi
 cleanIndex=$(arrayContains args "--clean")
 if [ $cleanIndex -gt -1 ]; then
   imageNameExists
-  if [ $env == "Debug" ]; then
+  if [ $env == $defaultenv ]; then
     composeFileName="docker-compose.yml"
   else
     composeFileName="docker-compose.$env.yml"
@@ -303,9 +314,9 @@ helpIndex=$(arrayContains args "--help")
 if [ $helpIndex -gt -1 ]; then
   echo "
 Usage:
-  ./dockerTask.sh --clean --image <IMAGE_NAME> [--env (Debug|Release)]
-  ./dockerTask.sh --build --image <IMAGE_NAME> [--env (Debug|Release)] [--context <BUILD_CONTEXT>]
-  ./dockerTask.sh --compose [--server <SSH_SERVER> --port <SSH_PORT> --user <SSH_USER> --key <SSH_KEY>] [--env (Debug|Release)] [ --project <DOCKER_COMPOSE_PROJECT_NAME> ]
+  ./dockerTask.sh --clean --image <IMAGE_NAME> [--env (Debug|Release)] [--defaultenv (Debug|Release)]
+  ./dockerTask.sh --build --image <IMAGE_NAME> [--env (Debug|Release)] [--defaultenv (Debug|Release)] [--context <BUILD_CONTEXT>]
+  ./dockerTask.sh --compose [--server <SSH_SERVER> --port <SSH_PORT> --user <SSH_USER> --key <SSH_KEY>] [--env (Debug|Release)] [--defaultenv (Debug|Release)] [ --project <DOCKER_COMPOSE_PROJECT_NAME> ]
   ./dockerTask.sh --push --image <IMAGE_NAME>
   ./dockerTask.sh --help"
   exit 0
