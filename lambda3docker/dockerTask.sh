@@ -216,7 +216,7 @@ if [ $composeIndex -gt -1 ]; then
         timeout 1 bash -c "cat < /dev/null > /dev/tcp/localhost/2375"
         connectExitCode=$?
         if [ $connectExitCode != "0" ]; then
-          sleep 1
+          sleep 3
         fi
       done
     fi
