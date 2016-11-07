@@ -22,6 +22,11 @@ function run() {
                     bash.arg("--env");
                     bash.arg(env);
                 }
+                var defaultenv = tl.getInput('defaultenv', false);
+                if (env) {
+                    bash.arg("--defaultenv");
+                    bash.arg(defaultenv);
+                }
                 break;
             case "build":
                 bash.arg("--build");
@@ -31,6 +36,11 @@ function run() {
                 if (env) {
                     bash.arg("--env");
                     bash.arg(env);
+                }
+                var defaultenv = tl.getInput('defaultenv', false);
+                if (env) {
+                    bash.arg("--defaultenv");
+                    bash.arg(defaultenv);
                 }
                 var context = tl.getInput('context', false);
                 if (context) {
@@ -46,6 +56,11 @@ function run() {
                 if (env) {
                     bash.arg("--env");
                     bash.arg(env);
+                }
+                var defaultenv = tl.getInput('defaultenv', false);
+                if (env) {
+                    bash.arg("--defaultenv");
+                    bash.arg(defaultenv);
                 }
                 var sshServer = tl.getInput('sshServer', false);
                 if (sshServer) {
